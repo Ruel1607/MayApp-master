@@ -33,17 +33,13 @@ public class EmployeeEndpoint {
 	public GetEmployeeResponse getEmployee(@RequestPayload GetEmployeeRequest request) {
 		GetEmployeeResponse response = new GetEmployeeResponse();
 		
-		try {
+	
 			com.model.Employee Employee = this.EmployeeRepository.findById(request.getId()).get();
 			
 			Employee emp = new Employee();
 			emp.setId(Employee.getId());
 			emp.setFirstname(Employee.getFirstname());
 			response.setEmployee(emp);
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
 		
 		return response;
 	}
@@ -90,7 +86,6 @@ public class EmployeeEndpoint {
 	public EditEmployeeResponse editEmployee(@RequestPayload EditEmployeeRequest request) {
 		
 		EditEmployeeResponse response;	response = new EditEmployeeResponse();
-		try {
 		
 			Employee emp = request.getEmployee();
 			com.model.Employee Employee2 = this.EmployeeRepository.findById(request.getId()).get();
@@ -106,10 +101,7 @@ public class EmployeeEndpoint {
 			emp1.setAge(editEmp.getAge());
 
 			response.setEmployee(emp);
-		} catch (Exception e) {
-		
-			e.printStackTrace();
-		}
+	
 		return response;
 	}
 	
